@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="container">
     <h1>{{ msg }}</h1>
 	<md-button v-on:click='getFighters()'>
       Magic
