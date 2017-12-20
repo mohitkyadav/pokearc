@@ -1,0 +1,29 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - "8"
+
+cache:
+  directories:
+    - $HOME/.cache/yarn
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+before_install:
+  - npm install --no-optional
+
+install:
+  - yarn
+
+script:
+  - npm run build
+
+git:
+  depth: 1
