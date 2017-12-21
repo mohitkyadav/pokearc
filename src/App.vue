@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <md-content class="md-scrollbar">
+      <router-view/>
+    </md-content>
   </div>
 </template>
 
