@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <md-progress-bar md-mode="buffer" :md-value="amount" :md-buffer="buffer"></md-progress-bar>
     <h1 class="md-display-2">{{ msg }}</h1>
     <ul>
       <li v-for="pokemon in pokemons">
@@ -52,7 +53,9 @@ export default {
     return {
       msg: 'Pokemon Archive',
       pokemons: [],
-      next: ''
+      next: '',
+      amount: 0,
+      buffer: 0
     }
   },
   methods: {
@@ -69,6 +72,8 @@ export default {
       this.$http.get(url)
       .then(function (data) {
         this.pokemons.push(data.body)
+        this.buffer = this.pokemons.length * 10 + 10
+        this.amount = this.pokemons.length * 10
       })
     }
   },
