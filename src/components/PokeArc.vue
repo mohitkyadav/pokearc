@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <md-progress-bar id="md-progress-bar" md-mode="indeterminate"></md-progress-bar>
+    <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
       <ul>
         <li v-for="pokemon in pokemons">
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     getPokemons: function () {
-      this.$http.get('https://pokeapi.co/api/v2/pokemon/?limit=10')
+      this.$http.get('https://pokeapi.co/api/v2/pokemon/?limit=15')
       .then(function (data) {
         for (var pokemon in data.body.results) {
           this.getPokemon(parseInt(pokemon) + 1)
@@ -72,7 +72,7 @@ export default {
       })
     },
     hideProgressBar: function () {
-      document.getElementById('md-progress-bar').style.visibility = 'hidden'
+      document.getElementById('progress-bar').style.visibility = 'hidden'
     }
   },
   beforeMount () {
