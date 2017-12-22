@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <md-progress-bar md-mode="buffer" :md-value="amount" :md-buffer="buffer"></md-progress-bar>
-    <h1 class="md-display-2">{{ msg }}</h1>
     <ul>
       <li v-for="pokemon in pokemons">
         <md-card class="md-elevation-20">
@@ -51,7 +50,6 @@ export default {
   name: 'PokeArc',
   data () {
     return {
-      msg: 'Pokemon Archive',
       pokemons: [],
       next: '',
       amount: 0,
@@ -108,5 +106,5 @@ li {
     margin: 4px;
     display: inline-block;
     vertical-align: top;
-  }
+}
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1 class="md-display-1">Pokemon Archive</h1>
     <md-content class="md-scrollbar">
       <router-view/>
     </md-content>
