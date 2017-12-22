@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <h1 class="md-display-1">Pokemon Archive</h1>
-    <md-content class="md-scrollbar">
-      <router-view/>
-    </md-content>
+    <md-tabs md-alignment="fixed">
+     <md-tab id="tab-home" md-label="Pokemons"><PokeArc/></md-tab>
+     <md-tab id="tab-pages" md-label="Find Pokemon"></md-tab>
+     <md-tab id="tab-posts" md-label="Favorites"></md-tab>
+     <md-tab id="tab-favorites" md-label="About"></md-tab>
+   </md-tabs>
   </div>
 </template>
 
@@ -13,13 +15,13 @@ export default {
 }
 </script>
 
-<style>
+<style scopped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0 0 0 0;
 }
 </style>

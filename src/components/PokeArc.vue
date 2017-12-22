@@ -1,47 +1,47 @@
 <template>
   <div class="container">
-    <md-progress-bar md-mode="buffer" :md-value="amount" :md-buffer="buffer"></md-progress-bar>
-    <ul>
-      <li v-for="pokemon in pokemons">
-        <md-card class="md-elevation-20">
-          <md-card-media>
-            <img style="height:220px;width:200px;" v-bind:src="pokemon.sprites.front_default" alt="People">
-          </md-card-media>
+    <md-progress-bar id="md-progress-bar" md-mode="indeterminate"></md-progress-bar>
+    <md-content class="md-scrollbar">
+      <ul>
+        <li v-for="pokemon in pokemons">
+          <md-card class="md-elevation-20">
+            <md-card-media>
+              <img style="height:220px;width:200px;" v-bind:src="pokemon.sprites.front_default" alt="People">
+            </md-card-media>
 
-          <md-card-header>
-            <div class="md-title">{{ pokemon.name }}</div>
-            <div class="md-subhead">Subtitle here</div>
-          </md-card-header>
+            <md-card-header>
+              <div class="md-title">{{ pokemon.name }}</div>
+              <div class="md-subhead">Subtitle here</div>
+            </md-card-header>
 
-          <md-card-expand>
-            <md-card-actions md-alignment="space-between">
-              <div>
-                <md-button>Action</md-button>
-                <md-button>Action</md-button>
-              </div>
+            <md-card-expand>
+              <md-card-actions md-alignment="space-between">
+                <div>
+                  <md-button>Action</md-button>
+                  <md-button>Action</md-button>
+                </div>
 
-              <md-card-expand-trigger>
-                <md-button class="md-icon-button">
-                  <md-icon>keyboard_arrow_down</md-icon>
-                </md-button>
-              </md-card-expand-trigger>
-            </md-card-actions>
+                <md-card-expand-trigger>
+                  <md-button class="md-icon-button">
+                    <md-icon>keyboard_arrow_down</md-icon>
+                  </md-button>
+                </md-card-expand-trigger>
+              </md-card-actions>
 
-            <md-card-expand-content>
-              <md-card-content>
-                <span class="md-body-2">
-                  Weight: {{ pokemon.weight }}
-                  <br/>
-                  Base experience: {{ pokemon.base_experience }}
-                </span>
-              </md-card-content>
-            </md-card-expand-content>
-          </md-card-expand>
-        </md-card>
-      </li>
-    </ul>
-
-
+              <md-card-expand-content>
+                <md-card-content>
+                  <span class="md-body-2">
+                    Weight: {{ pokemon.weight }}
+                    <br/>
+                    Base experience: {{ pokemon.base_experience }}
+                  </span>
+                </md-card-content>
+              </md-card-expand-content>
+            </md-card-expand>
+          </md-card>
+        </li>
+      </ul>
+    </md-content>
   </div>
 </template>
 
@@ -51,9 +51,7 @@ export default {
   data () {
     return {
       pokemons: [],
-      next: '',
-      amount: 0,
-      buffer: 0
+      next: ''
     }
   },
   methods: {
@@ -63,6 +61,7 @@ export default {
         for (var pokemon in data.body.results) {
           this.getPokemon(parseInt(pokemon) + 1)
         }
+        this.hideProgressBar()
       })
     },
     getPokemon: function (pokemon) {
@@ -70,9 +69,10 @@ export default {
       this.$http.get(url)
       .then(function (data) {
         this.pokemons.push(data.body)
-        this.buffer = this.pokemons.length * 10 + 10
-        this.amount = this.pokemons.length * 10
       })
+    },
+    hideProgressBar: function () {
+      document.getElementById('md-progress-bar').style.visibility = 'hidden'
     }
   },
   beforeMount () {
@@ -106,5 +106,11 @@ li {
     margin: 4px;
     display: inline-block;
     vertical-align: top;
+}
+.md-content {
+    max-width: 100%;
+    height: 800px;
+    max-height: 800px;
+    overflow: auto;
 }
 </style>
