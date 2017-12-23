@@ -6,7 +6,7 @@
         <li v-for="pokemon in pokemons">
           <md-card class="md-elevation-20">
             <md-card-media>
-              <img style="height:220px;width:200px;" v-bind:src="pokemon.sprites.front_default" alt="People">
+              <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
             </md-card-media>
 
             <md-card-header>
@@ -17,8 +17,8 @@
             <md-card-expand>
               <md-card-actions md-alignment="space-between">
                 <div>
-                  <md-button>Action</md-button>
-                  <md-button>Action</md-button>
+                  <md-button md-dense md-raised>Action</md-button>
+                  <md-button md-dense md-raised>Action</md-button>
                 </div>
 
                 <md-card-expand-trigger>
@@ -41,6 +41,7 @@
           </md-card>
         </li>
       </ul>
+      <md-button class="md-dense md-raised md-primary" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
     </md-content>
   </div>
 </template>
@@ -52,36 +53,46 @@ export default {
     return {
       pokemons: [],
       next: '',
-      limit: 15
+      limit: 5,
+      offset: 0
     }
   },
   methods: {
-    getPokemons: function (limit) {
-      var url = 'https://pokeapi.co/api/v2/pokemon/?limit=' + limit
+    getPokemons: function (limit, offset) {
+      this.offset += offset
+      var url = 'https://pokeapi.co/api/v2/pokemon/?limit=' + limit + '&offset=' + this.offset
       this.$http.get(url)
       .then(function (data) {
-        for (var pokemon in data.body.results) {
-          this.getPokemon(parseInt(pokemon) + 1)
+        var i = 0
+        while (i < this.limit) {
+          this.getPokemon(data.body.results[i].url)
+          i++
         }
       })
     },
-    getPokemon: function (pokemon) {
-      var url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon
+    getMorePokemons: function () {
+      this.showProgressBar()
+      this.getPokemons(5, 5)
+    },
+    getPokemon: function (url) {
       this.$http.get(url)
       .then(function (data) {
         this.pokemons.push(data.body)
       }).then(function () {
-        if (this.pokemons.length === this.limit) {
+        if (this.pokemons.length === this.limit + this.offset) {
           this.hideProgressBar()
         }
       })
     },
     hideProgressBar: function () {
       document.getElementById('progress-bar').style.visibility = 'hidden'
+    },
+    showProgressBar: function () {
+      document.getElementById('progress-bar').style.visibility = 'visible'
     }
   },
   beforeMount () {
-    this.getPokemons(this.limit)
+    this.getPokemons(5, 0)
   }
 }
 </script>
@@ -107,15 +118,15 @@ li {
     height: 480px;
 }
 .md-card {
-    width: 320px;
+    width: 300px;
     margin: 4px;
     display: inline-block;
     vertical-align: top;
 }
 .md-content {
     max-width: 100%;
-    height: 800px;
-    max-height: 800px;
+    height: 690px;
+    max-height: 690px;
     overflow: auto;
 }
 </style>
