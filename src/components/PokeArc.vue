@@ -51,17 +51,18 @@ export default {
   data () {
     return {
       pokemons: [],
-      next: ''
+      next: '',
+      limit: 15
     }
   },
   methods: {
-    getPokemons: function () {
-      this.$http.get('https://pokeapi.co/api/v2/pokemon/?limit=15')
+    getPokemons: function (limit) {
+      var url = 'https://pokeapi.co/api/v2/pokemon/?limit=' + limit
+      this.$http.get(url)
       .then(function (data) {
         for (var pokemon in data.body.results) {
           this.getPokemon(parseInt(pokemon) + 1)
         }
-        this.hideProgressBar()
       })
     },
     getPokemon: function (pokemon) {
@@ -69,6 +70,10 @@ export default {
       this.$http.get(url)
       .then(function (data) {
         this.pokemons.push(data.body)
+      }).then(function () {
+        if (this.pokemons.length === this.limit) {
+          this.hideProgressBar()
+        }
       })
     },
     hideProgressBar: function () {
@@ -76,7 +81,7 @@ export default {
     }
   },
   beforeMount () {
-    this.getPokemons()
+    this.getPokemons(this.limit)
   }
 }
 </script>
