@@ -4,21 +4,22 @@
     <md-content class="md-scrollbar">
       <ul>
         <li v-for="pokemon in pokemons">
-          <md-card class="md-elevation-20">
+          <md-card class="md-elevation-24">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
             </md-card-media>
 
             <md-card-header>
               <div class="md-title">{{ pokemon.name }}</div>
-              <div class="md-subhead">Subtitle here</div>
+              <div class="md-subhead">Moves : {{ pokemon.moves.length }}</div>
             </md-card-header>
 
             <md-card-expand>
               <md-card-actions md-alignment="space-between">
                 <div>
-                  <md-button md-dense md-raised>Action</md-button>
-                  <md-button md-dense md-raised>Action</md-button>
+                    <md-button class="md-icon-button">
+                        <md-icon>favorite</md-icon>
+                    </md-button>
                 </div>
 
                 <md-card-expand-trigger>
@@ -34,6 +35,12 @@
                     Weight: {{ pokemon.weight }}
                     <br/>
                     Base experience: {{ pokemon.base_experience }}
+                    <br/>
+                    <ul  v-for="stat in pokemon.stats">
+                      <li class="capitalize">
+                        {{ stat.stat.name }} : {{ stat.base_stat }}
+                      </li>
+                    </ul>
                   </span>
                 </md-card-content>
               </md-card-expand-content>
@@ -122,6 +129,9 @@ li {
     margin: 4px;
     display: inline-block;
     vertical-align: top;
+}
+.md-title, .capitalize {
+  text-transform: capitalize;
 }
 .md-content {
     max-width: 100%;
