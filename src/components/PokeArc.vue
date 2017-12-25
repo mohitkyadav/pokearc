@@ -59,7 +59,6 @@ export default {
   data () {
     return {
       pokemons: [],
-      next: '',
       limit: 5,
       offset: 0
     }
@@ -117,6 +116,9 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+}
+.md-body-2, li, h1, h2, .md-title {
+  text-shadow: 2px 2px 5px black;
 }
 .container {
   padding: 0.05%;
