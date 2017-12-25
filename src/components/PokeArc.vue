@@ -18,13 +18,13 @@
               <md-card-actions md-alignment="space-between">
                 <div>
                     <md-button class="md-icon-button">
-                        <md-icon>favorite</md-icon>
+                        <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
                     </md-button>
                 </div>
 
                 <md-card-expand-trigger>
                   <md-button class="md-icon-button">
-                    <md-icon>keyboard_arrow_down</md-icon>
+                    <md-icon>keyboard_arrow_down<md-tooltip md-direction="bottom">Stats</md-tooltip></md-icon>
                   </md-button>
                 </md-card-expand-trigger>
               </md-card-actions>

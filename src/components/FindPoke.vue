@@ -1,20 +1,19 @@
 <template lang="html">
   <div id="FindPoke">
     <md-progress-bar id="search-progress-bar" md-mode="indeterminate"></md-progress-bar>
-    <md-toolbar>
+    <md-toolbar class="md-primary">
       <div class="md-toolbar-row">
         <md-field class="search">
          <label>Enter Pokemon name or id</label>
          <md-input  v-on:keyup.enter="searchPokemon()" v-model="query"></md-input>
         </md-field>
-        <md-button class="md-dense md-raised md-primary" v-on:click='searchPokemon()'>Search</md-button>
+        <md-button id="search-btn" class="md-icon-button md-fab" v-on:click="searchPokemon()"><md-icon>search</md-icon><md-tooltip md-direction="bottom">Search</md-tooltip></md-button>
       </div>
     </md-toolbar>
     <md-content class="md-scrollbar">
       <div class="not-found" v-if="!pokemon">
-        <md-empty-state
-          md-rounded
-          <md-label class="md-display-3 md-primary md-raised">You haven't searched yet or no Pokemon matched your query. Try searching for 6 or charizard.</md-label>
+        <md-empty-state>
+          <h2 class="md-display-1">You haven't searched yet or no Pokemon matched your query. Try searching for "6" or "charizard".</h2>
         </md-empty-state>
       </div>
       <md-card v-if="pokemon" class="md-elevation-24">
@@ -31,13 +30,13 @@
           <md-card-actions md-alignment="space-between">
             <div>
                 <md-button class="md-icon-button">
-                    <md-icon>favorite</md-icon>
+                    <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
                 </md-button>
             </div>
 
             <md-card-expand-trigger>
               <md-button class="md-icon-button">
-                <md-icon>keyboard_arrow_down</md-icon>
+                <md-icon>keyboard_arrow_down<md-tooltip md-direction="bottom">Stats</md-tooltip></md-icon>
               </md-button>
             </md-card-expand-trigger>
           </md-card-actions>
@@ -80,12 +79,17 @@ export default {
       }).then(function () {
         if (this.pokemon !== null) {
           this.hideProgressBar()
+          this.clickStop()
         }
       })
     },
     searchPokemon: function () {
+      document.getElementById('search-btn').classList.add('md-dense')
       this.pokemon = null
       this.showProgressBar()
+      if (this.query === '') {
+        this.query = '1'
+      }
       var url = 'https://pokeapi.co/api/v2/pokemon/' + this.query
       this.getPokemon(url)
     },
@@ -94,6 +98,9 @@ export default {
     },
     showProgressBar: function () {
       document.getElementById('search-progress-bar').style.visibility = 'visible'
+    },
+    clickStop: function () {
+      document.getElementById('search-btn').classList.remove('md-dense')
     }
   },
   mounted () {
@@ -126,9 +133,8 @@ export default {
   }
   .not-found {
     position: absolute;
-    width: 80%;
-    left: 110%;
-    margin:0 auto;
+    width: 100%;
+    margin: 50px auto;
   }
   ul {
     list-style-type: none;
