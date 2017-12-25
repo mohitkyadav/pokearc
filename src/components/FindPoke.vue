@@ -11,12 +11,17 @@
       </div>
     </md-toolbar>
     <md-content class="md-scrollbar">
-      <div class="not-found" v-if="!pokemon">
+      <div class="not-found" v-if="err">
+        <md-empty-state>
+          <h2 class="md-display-1">Oops.. it's a {{ err }}.</h2>
+        </md-empty-state>
+      </div>
+      <div class="not-found" v-if="!pokemon && !err">
         <md-empty-state>
           <h2 class="md-display-1">You haven't searched yet or no Pokemon matched your query. Try searching for "6" or "charizard".</h2>
         </md-empty-state>
       </div>
-      <md-card v-if="pokemon" class="md-elevation-24">
+      <md-card v-if="pokemon && !err" class="md-elevation-24">
         <md-card-media>
           <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
         </md-card-media>
@@ -68,6 +73,7 @@ export default {
   data () {
     return {
       pokemon: null,
+      err: null,
       query: ''
     }
   },
@@ -78,14 +84,17 @@ export default {
         this.pokemon = data.body
       }).then(function () {
         if (this.pokemon !== null) {
+          this.err = null
           this.hideProgressBar()
           this.clickStop()
         }
+      }).catch(error => {
+        this.hideProgressBar()
+        this.err = error.status
       })
     },
     searchPokemon: function () {
       document.getElementById('search-btn').classList.add('md-dense')
-      this.pokemon = null
       this.showProgressBar()
       if (this.query === '') {
         this.query = '1'
