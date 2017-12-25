@@ -137,8 +137,8 @@ li {
 }
 .md-content {
     max-width: 100%;
-    height: 690px;
-    max-height: 690px;
+    height: 650px;
+    max-height: 650px;
     overflow: auto;
 }
 </style>

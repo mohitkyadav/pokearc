@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <md-tabs md-alignment="fixed">
+    <md-tabs md-alignment="fixed" class="md-elevation-24">
      <md-tab id="tab-home" md-icon="home" md-label="Pokemons"></md-tooltip><PokeArc/></md-tab>
      <md-tab id="tab-pages" md-icon="search" md-label="Find Pokemon"><FindPoke/></md-tab>
      <md-tab id="tab-posts" md-icon="favorite" md-label="Favorites"></md-tab>

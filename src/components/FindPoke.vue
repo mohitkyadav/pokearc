@@ -1,13 +1,13 @@
 <template lang="html">
-  <div id="FindPoke">
+  <div id="FindPoke container">
     <md-progress-bar id="search-progress-bar" md-mode="indeterminate"></md-progress-bar>
-    <md-toolbar class="md-primary">
+    <md-toolbar md-elevation="0" class="md-transparent">
       <div class="md-toolbar-row">
         <md-field class="search">
          <label>Enter Pokemon name or id</label>
          <md-input  v-on:keyup.enter="searchPokemon()" v-model="query"></md-input>
         </md-field>
-        <md-button id="search-btn" class="md-icon-button md-fab" v-on:click="searchPokemon()"><md-icon>search</md-icon><md-tooltip md-direction="bottom">Search</md-tooltip></md-button>
+        <md-button id="search-btn" class="md-icon-button md-fab md-primary" v-on:click="searchPokemon()"><md-icon>search</md-icon><md-tooltip md-direction="bottom">Search</md-tooltip></md-button>
       </div>
     </md-toolbar>
     <md-content class="md-scrollbar">
@@ -127,14 +127,17 @@ export default {
   }
   .md-content {
       max-width: 100%;
-      height: 690px;
-      max-height: 690px;
+      height: 588px;
+      max-height: 588px;
       overflow: auto;
   }
   .not-found {
     position: absolute;
     width: 100%;
     margin: 50px auto;
+  }
+  .container {
+    padding: 0.05%;
   }
   ul {
     list-style-type: none;
