@@ -2,8 +2,6 @@
 
 > A Pokemon Encyclopedia
 
-[![Build Status](https://travis-ci.com/mohitkyadav/pokearc.svg?token=pLJkWav1wbnbGfoLfZtG&branch=master)](https://travis-ci.com/mohitkyadav/pokearc)
-
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/mohitkyadav/pokearc)
 [![forthebadge](http://forthebadge.com/images/badges/uses-git.svg)](https://github.com/mohitkyadav/pokearc)
 
