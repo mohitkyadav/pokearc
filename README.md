@@ -35,6 +35,9 @@ npm run e2e
 # run all tests
 npm test
 ```
+
+## Uses
+#### [PokeAPI](https://github.com/PokeAPI/pokeapi), uses the RESTful Pokémon API http://pokeapi.co, and  [vue-material](https://github.com/vuematerial/vue-material)
 ## Author
 
 Mohit Kumar Yadav
