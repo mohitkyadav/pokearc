@@ -10,6 +10,10 @@
         <md-button id="search-btn" class="md-icon-button md-fab md-primary" v-on:click="searchPokemon()"><md-icon>search</md-icon><md-tooltip md-direction="bottom">Search</md-tooltip></md-button>
       </div>
     </md-toolbar>
+    <md-dialog-alert
+      :md-active.sync="popup"
+      md-content="Coming soon..."
+      md-confirm-text="Cool!" />
     <md-content class="md-scrollbar">
       <div class="not-found" v-if="err">
         <md-empty-state>
@@ -34,7 +38,7 @@
         <md-card-expand>
           <md-card-actions md-alignment="space-between">
             <div>
-                <md-button class="md-icon-button">
+                <md-button @click="popup = true" class="md-icon-button">
                     <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
                 </md-button>
             </div>
@@ -63,6 +67,35 @@
           </md-card-expand-content>
         </md-card-expand>
       </md-card>
+      <div class="full-control" v-if="pokemon && !err">
+        <md-list>
+          <md-list-item md-expand>
+            <md-icon>whatshot</md-icon>
+            <span class="md-list-item-text">Moves</span>
+
+            <md-list slot="md-expand">
+              <md-list-item v-for="move in pokemon.moves" :key="move.move.name" class="md-inset">{{ move.move.name }}</md-list-item>
+            </md-list>
+          </md-list-item>
+
+          <md-list-item md-expand>
+            <md-icon>videogame_asset</md-icon>
+            <span class="md-list-item-text">Game indices</span>
+
+            <md-list slot="md-expand">
+              <md-list-item v-for="index in pokemon.game_indices" :key="index.version.name" class="md-inset">{{ index.version.name }}</md-list-item>
+            </md-list>
+          </md-list-item>
+
+          <md-list-item md-expand>
+            <span class="md-list-item-text">Type</span>
+
+            <md-list slot="md-expand">
+              <md-list-item v-for="type in pokemon.types" :key="type.type.name" class="md-inset">{{ type.type.name }}</md-list-item>
+            </md-list>
+          </md-list-item>
+        </md-list>
+      </div>
     </md-content>
   </div>
 </template>
@@ -74,6 +107,7 @@ export default {
     return {
       pokemon: null,
       err: null,
+      popup: false,
       query: ''
     }
   },
@@ -120,7 +154,7 @@ export default {
 
 <style scoped>
   .search {
-    max-width: 500px;
+    max-width: 100%;
   }
   .card-expansion {
       height: 480px;
@@ -128,8 +162,8 @@ export default {
   .md-card {
       width: 300px;
       margin: 4px;
-      display: inline-block;
       vertical-align: top;
+      float: left;
   }
   .md-title, .capitalize {
     text-transform: capitalize;
@@ -151,12 +185,18 @@ export default {
   ul {
     list-style-type: none;
     padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
+    margin: 0;
   }
   .md-body-2, li {
     text-shadow: 2px 2px 5px black;
+  }
+  .full-control > .md-list {
+    width: 60%;
+    max-width: 100%;
+    height: 600px;
+    display: inline-block;
+    overflow: auto;
+    border: 1px solid rgba(#000, .12);
+    vertical-align: top;
   }
 </style>

@@ -1,6 +1,10 @@
 <template>
   <div class="container">
     <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
+    <md-dialog-alert
+      :md-active.sync="popup"
+      md-content="Coming soon..."
+      md-confirm-text="Cool!" />
     <md-content class="md-scrollbar">
       <ul>
         <li v-for="pokemon in pokemons">
@@ -17,7 +21,7 @@
             <md-card-expand>
               <md-card-actions md-alignment="space-between">
                 <div>
-                    <md-button class="md-icon-button">
+                    <md-button @click="popup = true" class="md-icon-button">
                         <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
                     </md-button>
                 </div>
@@ -60,6 +64,7 @@ export default {
     return {
       pokemons: [],
       limit: 5,
+      popup: false,
       offset: 0
     }
   },
