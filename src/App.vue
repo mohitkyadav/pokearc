@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <md-tabs md-alignment="fixed" class="md-elevation-24">
+    <md-tabs md-alignment="fixed">
      <md-tab id="tab-home" md-icon="home" md-label="Pokemons"></md-tooltip><PokeArc/></md-tab>
-     <md-tab id="tab-pages" md-icon="search" md-label="Find Pokemon"><FindPoke/></md-tab>
-     <md-tab id="tab-posts" md-icon="favorite" md-label="Favorites"></md-tab>
-     <md-tab id="tab-favorites" md-icon="pages" md-label="About"></md-tab>
+     <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke/></md-tab>
+     <md-tab id="tab-fav" md-icon="favorite" md-label="Favorites"></md-tab>
+     <md-tab id="tab-about" md-icon="pages" md-label="About"></md-tab>
     </md-tabs>
     <div class="separator">
       <md-button v-on:click="openUrl(githubProfile)" class="md-icon-button md-raised">
@@ -34,7 +34,17 @@ export default {
     openUrl: function (url) {
       var win = window.open(url, '_blank')
       win.focus()
+    },
+    fixPadding: function (padding) {
+      document.getElementById('tab-home').style.padding = '0'
+      document.getElementById('tab-search').style.padding = '0'
+      document.getElementById('tab-fav').style.padding = '0'
+      document.getElementById('tab-about').style.padding = '0'
+      console.log('done')
     }
+  },
+  mounted () {
+    this.fixPadding(0)
   }
 }
 </script>
