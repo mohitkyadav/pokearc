@@ -3,6 +3,7 @@
 > A Pokemon Encyclopedia
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/mohitkyadav/pokearc)
+[![forthebadge](http://forthebadge.com/images/badges/made-with-vue.svg)](http://vuejs.org)
 [![forthebadge](http://forthebadge.com/images/badges/uses-git.svg)](https://github.com/mohitkyadav/pokearc)
 
 
