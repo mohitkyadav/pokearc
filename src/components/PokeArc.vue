@@ -8,7 +8,7 @@
     <md-content class="md-scrollbar">
       <ul>
         <li v-for="pokemon in pokemons">
-          <md-card class="md-elevation-24">
+          <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
             </md-card-media>
@@ -133,7 +133,7 @@ li {
 }
 .md-card {
     width: 300px;
-    margin: 4px;
+    margin: 6px;
     display: inline-block;
     vertical-align: top;
 }

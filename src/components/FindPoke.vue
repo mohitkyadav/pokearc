@@ -25,7 +25,7 @@
           <h2 class="md-display-1">You haven't searched yet or no Pokemon matched your query. Try searching for "6" or "charizard".</h2>
         </md-empty-state>
       </div>
-      <md-card v-if="pokemon && !err" class="md-elevation-24">
+      <md-card md-with-hover v-if="pokemon && !err" class="md-elevation-24">
         <md-card-media>
           <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
         </md-card-media>
