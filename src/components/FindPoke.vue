@@ -22,7 +22,7 @@
       </div>
       <div class="not-found" v-if="!pokemon && !err">
         <md-empty-state>
-          <h2 class="md-display-1">You haven't searched yet or no Pokemon matched your query. Try searching for "6" or "charizard".</h2>
+          <h2 class="md-display-1">You haven't searched yet. Try searching for any id(numeric between 1 and 802 inclusive) or name of a pokemon, "charizard".</h2>
         </md-empty-state>
       </div>
       <md-card md-with-hover v-if="pokemon && !err" class="md-elevation-24">
