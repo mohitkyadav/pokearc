@@ -22,12 +22,15 @@
         <p>
           <md-button v-on:click="openUrl(twitter)" class="md-icon-button md-primary md-raised">
             <img v-bind:src="twitterSvg" alt="Me">
+            <md-tooltip md-direction="left">twitter</md-tooltip>
           </md-button>
           <md-button v-on:click="openUrl(linkedIn)" class="md-icon-button md-primary md-raised">
             <img v-bind:src="linkedInSvg" alt="Me">
+            <md-tooltip md-direction="down">LinkedIn</md-tooltip>
           </md-button>
           <md-button v-on:click="openUrl(github)" class="md-icon-button md-primary md-raised">
             <img v-bind:src="githubSvg" alt="Me">
+            <md-tooltip md-direction="right">github</md-tooltip>
           </md-button>
         </p>
 

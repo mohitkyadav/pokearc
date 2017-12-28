@@ -133,6 +133,7 @@ export default {
       if (this.query === '') {
         this.query = '1'
       }
+      this.query = this.query.toLowerCase()
       var url = 'https://pokeapi.co/api/v2/pokemon/' + this.query
       this.getPokemon(url)
     },
