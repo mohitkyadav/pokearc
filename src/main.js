@@ -5,6 +5,7 @@ import App from './App'
 // import router from './router'
 import PokeArc from './components/PokeArc.vue'
 import FindPoke from './components/FindPoke.vue'
+import Favorite from './components/Fav.vue'
 import About from './components/About.vue'
 
 import VueResource from 'vue-resource'
@@ -17,6 +18,7 @@ Vue.use(VueResource)
 
 Vue.component('PokeArc', PokeArc)
 Vue.component('FindPoke', FindPoke)
+Vue.component('Favorite', Favorite)
 Vue.component('About', About)
 Vue.config.productionTip = false
 

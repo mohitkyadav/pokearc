@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
-    <md-dialog-alert
-      :md-active.sync="popup"
-      md-content="Done!"
-      md-confirm-text="Cool!" />
+    <md-progress-bar id="fav-progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
       <ul>
         <li v-for="pokemon in pokemons">
@@ -52,55 +48,40 @@
           </md-card>
         </li>
       </ul>
-      <md-button class="md-dense md-raised md-primary" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
     </md-content>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PokeArc',
+  name: 'Favorite',
   data () {
     return {
       pokemons: [],
-      favPokemon: [],
-      limit: 5,
-      popup: false,
-      offset: 0
+      favPokemon: []
     }
   },
   methods: {
-    getPokemons: function (limit, offset) {
-      this.offset += offset
-      var url = 'https://pokeapi.co/api/v2/pokemon/?limit=' + limit + '&offset=' + this.offset
-      this.$http.get(url)
-      .then(function (data) {
-        var i = 0
-        while (i < this.limit) {
-          this.getPokemon(data.body.results[i].url)
-          i++
-        }
-      })
-    },
-    getMorePokemons: function () {
-      this.showProgressBar()
-      this.getPokemons(5, 5)
+    getPokemons: function () {
+      for (var i = 0; i < this.favPokemon.length; i++) {
+        var url = 'https://pokeapi.co/api/v2/pokemon/' + this.favPokemon[i] + '/'
+        this.getPokemon(url)
+      }
     },
     getPokemon: function (url) {
       this.$http.get(url)
       .then(function (data) {
         this.pokemons.push(data.body)
-      }).then(function () {
-        if (this.pokemons.length === this.limit + this.offset) {
+        if (this.pokemons.length === this.favPokemon.length) {
           this.hideProgressBar()
         }
       })
     },
     hideProgressBar: function () {
-      document.getElementById('progress-bar').style.visibility = 'hidden'
+      document.getElementById('fav-progress-bar').style.visibility = 'hidden'
     },
     showProgressBar: function () {
-      document.getElementById('progress-bar').style.visibility = 'visible'
+      document.getElementById('fav-progress-bar').style.visibility = 'visible'
     },
     addToFav: function (pokeid) {
       if (this.favPokemon.indexOf(pokeid) < 0) {
@@ -114,13 +95,12 @@ export default {
   },
   beforeMount () {
     this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
-    this.getPokemons(5, 0)
+    this.getPokemons()
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="css">
 h1, h2 {
   font-weight: normal;
   color: red;

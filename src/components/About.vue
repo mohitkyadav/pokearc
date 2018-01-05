@@ -26,7 +26,7 @@
           </md-button>
           <md-button v-on:click="openUrl(linkedIn)" class="md-icon-button md-primary md-raised">
             <img v-bind:src="linkedInSvg" alt="Me">
-            <md-tooltip md-direction="down">LinkedIn</md-tooltip>
+            <md-tooltip>LinkedIn</md-tooltip>
           </md-button>
           <md-button v-on:click="openUrl(github)" class="md-icon-button md-primary md-raised">
             <img v-bind:src="githubSvg" alt="Me">
