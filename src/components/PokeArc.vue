@@ -113,7 +113,9 @@ export default {
     }
   },
   beforeMount () {
-    this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
+    if (localStorage.getItem('favPokemon')) {
+      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
+    }
     this.getPokemons(5, 0)
   }
 }
