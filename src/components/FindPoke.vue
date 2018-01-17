@@ -12,7 +12,7 @@
     </md-toolbar>
     <md-dialog-alert
       :md-active.sync="popup"
-      md-content="Coming soon..."
+      md-content="Done, refresh the page to find your favourites."
       md-confirm-text="Cool!" />
     <md-content class="md-scrollbar">
       <div class="not-found" v-if="err">
@@ -38,7 +38,7 @@
         <md-card-expand>
           <md-card-actions md-alignment="space-between">
             <div>
-                <md-button @click="popup = true" class="md-icon-button">
+                <md-button v-on:click="addToFav(pokemon.id)" @click="popup = true" class="md-icon-button">
                     <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
                 </md-button>
             </div>
@@ -107,6 +107,7 @@ export default {
     return {
       pokemon: null,
       err: null,
+      favPokemon: [],
       popup: false,
       query: ''
     }
@@ -126,6 +127,15 @@ export default {
         this.hideProgressBar()
         this.err = error.status
       })
+    },
+    addToFav: function (pokeid) {
+      if (this.favPokemon.indexOf(pokeid) < 0) {
+        this.favPokemon.push(pokeid)
+      } else {
+        this.favPokemon.pop(this.favPokemon.indexOf(pokeid))
+      }
+      localStorage.setItem('favPokemon', JSON.stringify(this.favPokemon))
+      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
     },
     searchPokemon: function () {
       document.getElementById('search-btn').classList.add('md-dense')

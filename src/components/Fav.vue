@@ -2,6 +2,10 @@
   <div class="container">
     <md-progress-bar id="fav-progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
+      <md-dialog-alert
+        :md-active.sync="popup"
+        md-content="Removed from favourites, refresh the page to see changes."
+        md-confirm-text="Cool!" />
       <ul>
         <li v-for="pokemon in pokemons">
           <md-card md-with-hover class="md-elevation-20">
@@ -58,6 +62,7 @@ export default {
   data () {
     return {
       pokemons: [],
+      popup: false,
       favPokemon: []
     }
   },

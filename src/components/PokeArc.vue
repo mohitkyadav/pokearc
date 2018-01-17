@@ -3,7 +3,7 @@
     <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-dialog-alert
       :md-active.sync="popup"
-      md-content="Done!"
+      md-content="Done, refresh the page to find your favourites."
       md-confirm-text="Cool!" />
     <md-content class="md-scrollbar">
       <ul>
