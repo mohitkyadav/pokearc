@@ -10,7 +10,7 @@
         <li v-for="pokemon in pokemons">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
-              <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
+              <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
             </md-card-media>
 
             <md-card-header>
@@ -60,6 +60,7 @@
 <script>
 export default {
   name: 'PokeArc',
+  props: ['settings'],
   data () {
     return {
       pokemons: [],
