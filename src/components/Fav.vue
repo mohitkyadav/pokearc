@@ -59,6 +59,7 @@
 <script>
 export default {
   name: 'Favorite',
+  props: ['settings'],
   data () {
     return {
       pokemons: [],

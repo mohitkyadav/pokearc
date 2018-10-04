@@ -7,6 +7,7 @@ import PokeArc from './components/PokeArc.vue'
 import FindPoke from './components/FindPoke.vue'
 import Favorite from './components/Fav.vue'
 import About from './components/About.vue'
+import Settings from './components/Settings.vue'
 
 import VueResource from 'vue-resource'
 import VueMaterial from 'vue-material'
@@ -20,6 +21,7 @@ Vue.component('PokeArc', PokeArc)
 Vue.component('FindPoke', FindPoke)
 Vue.component('Favorite', Favorite)
 Vue.component('About', About)
+Vue.component('Settings', Settings)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
