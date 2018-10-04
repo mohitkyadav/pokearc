@@ -4,6 +4,7 @@
       <h1>Settings</h1>
       <md-switch v-model="localSettings.showShiny">Show Shiny</md-switch>
       <br>
+      <md-switch v-model="localSettings.useLightTheme">Light theme</md-switch>
       <md-button class="md-dense md-raised md-primary" v-on:click='save()'>Save settings</md-button>
     </md-content>
   </div>

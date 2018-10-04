@@ -38,12 +38,17 @@ export default {
     if (localStorage.getItem('settings')) {
       let settings = JSON.parse(localStorage.getItem('settings'))
       this.settings = settings
+      this.updateTheme()
     }
   },
   methods: {
     onUpdateSettings: function (settings) {
       this.settings = Object.assign({}, settings)
+      this.updateTheme()
       localStorage.setItem('settings', JSON.stringify(settings))
+    },
+    updateTheme: function () {
+        this.$material.theming.theme = (this.settings.useLightTheme) ? 'default' : 'deafult-dark';
     },
     openUrl: function (url) {
       var win = window.open(url, '_blank')
