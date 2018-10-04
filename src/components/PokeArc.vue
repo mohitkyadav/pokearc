@@ -1,13 +1,9 @@
 <template>
   <div class="container">
     <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
-    <md-dialog-alert
-      :md-active.sync="popup"
-      md-content="Done, refresh the page to find your favourites."
-      md-confirm-text="Cool!" />
     <md-content class="md-scrollbar">
       <ul>
-        <li v-for="pokemon in pokemons">
+        <li v-for="pokemon in pokemons" :key="pokemon.id">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
@@ -21,9 +17,14 @@
             <md-card-expand>
               <md-card-actions md-alignment="space-between">
                 <div>
-                    <md-button v-on:click="addToFav(pokemon.id)" @click="popup = true" class="md-icon-button">
-                        <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
-                    </md-button>
+                  <md-button v-on:click="toggleFavourite(pokemon.id)" class="md-icon-button">
+                      <md-icon v-if="favourites && favourites.includes(pokemon.id)">
+                        favorite<md-tooltip md-direction="bottom">Remove from favourites</md-tooltip>
+                      </md-icon>
+                      <md-icon v-else>
+                        favorite_border<md-tooltip md-direction="bottom">Add to favorites</md-tooltip>
+                      </md-icon>
+                  </md-button>
                 </div>
 
                 <md-card-expand-trigger>
@@ -60,13 +61,11 @@
 <script>
 export default {
   name: 'PokeArc',
-  props: ['settings'],
+  props: ['settings', 'favourites'],
   data () {
     return {
       pokemons: [],
-      favPokemon: [],
       limit: 5,
-      popup: false,
       offset: 0
     }
   },
@@ -103,20 +102,11 @@ export default {
     showProgressBar: function () {
       document.getElementById('progress-bar').style.visibility = 'visible'
     },
-    addToFav: function (pokeid) {
-      if (this.favPokemon.indexOf(pokeid) < 0) {
-        this.favPokemon.push(pokeid)
-      } else {
-        this.favPokemon.pop(this.favPokemon.indexOf(pokeid))
-      }
-      localStorage.setItem('favPokemon', JSON.stringify(this.favPokemon))
-      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
+    toggleFavourite: function (pokeid) {
+      this.$emit('favourite', pokeid)
     }
   },
   beforeMount () {
-    if (localStorage.getItem('favPokemon')) {
-      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
-    }
     this.getPokemons(5, 0)
   }
 }

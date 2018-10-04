@@ -2,15 +2,11 @@
   <div class="container">
     <md-progress-bar id="fav-progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
-      <md-dialog-alert
-        :md-active.sync="popup"
-        md-content="Removed from favourites, refresh the page to see changes."
-        md-confirm-text="Cool!" />
       <ul>
-        <li v-for="pokemon in pokemons">
+        <li v-for="pokemon in pokemons" :key="pokemon.id">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
-              <img style="height:180px;width:180px;" v-bind:src="pokemon.sprites.front_default" alt="People">
+              <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
             </md-card-media>
 
             <md-card-header>
@@ -21,9 +17,14 @@
             <md-card-expand>
               <md-card-actions md-alignment="space-between">
                 <div>
-                    <md-button v-on:click="addToFav(pokemon.id)" @click="popup = true" class="md-icon-button">
-                        <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
-                    </md-button>
+                  <md-button v-on:click="toggleFavourite(pokemon.id)" class="md-icon-button">
+                      <md-icon v-if="favourites.includes(pokemon.id)">
+                        favorite<md-tooltip md-direction="bottom">Remove from favourites</md-tooltip>
+                      </md-icon>
+                      <md-icon v-else>
+                        favorite_border<md-tooltip md-direction="bottom">Add to favorites</md-tooltip>
+                      </md-icon>
+                  </md-button>
                 </div>
 
                 <md-card-expand-trigger>
@@ -59,18 +60,22 @@
 <script>
 export default {
   name: 'Favorite',
-  props: ['settings'],
+  props: ['settings', 'favourites'],
   data () {
     return {
-      pokemons: [],
-      popup: false,
-      favPokemon: []
+      pokemons: []
+    }
+  },
+  watch: {
+    favourites: function (newFavourites, oldFavourites) {
+      this.pokemons = []
+      this.getPokemons()
     }
   },
   methods: {
     getPokemons: function () {
-      for (var i = 0; i < this.favPokemon.length; i++) {
-        var url = 'https://pokeapi.co/api/v2/pokemon/' + this.favPokemon[i] + '/'
+      for (var i = 0; i < this.favourites.length; i++) {
+        var url = 'https://pokeapi.co/api/v2/pokemon/' + this.favourites[i] + '/'
         this.getPokemon(url)
       }
     },
@@ -78,7 +83,7 @@ export default {
       this.$http.get(url)
       .then(function (data) {
         this.pokemons.push(data.body)
-        if (this.pokemons.length === this.favPokemon.length) {
+        if (this.pokemons.length === this.favourites.length) {
           this.hideProgressBar()
         }
       })
@@ -89,20 +94,11 @@ export default {
     showProgressBar: function () {
       document.getElementById('fav-progress-bar').style.visibility = 'visible'
     },
-    addToFav: function (pokeid) {
-      if (this.favPokemon.indexOf(pokeid) < 0) {
-        this.favPokemon.push(pokeid)
-      } else {
-        this.favPokemon.pop(this.favPokemon.indexOf(pokeid))
-      }
-      localStorage.setItem('favPokemon', JSON.stringify(this.favPokemon))
-      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
+    toggleFavourite: function (pokeid) {
+      this.$emit('favourite', pokeid)
     }
   },
   beforeMount () {
-    if (localStorage.getItem('favPokemon')) {
-      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
-    }
     this.getPokemons()
   }
 }
