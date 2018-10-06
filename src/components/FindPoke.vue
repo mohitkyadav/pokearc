@@ -10,10 +10,6 @@
         <md-button id="search-btn" class="md-icon-button md-fab md-primary" v-on:click="searchPokemon()"><md-icon>search</md-icon><md-tooltip md-direction="bottom">Search</md-tooltip></md-button>
       </div>
     </md-toolbar>
-    <md-dialog-alert
-      :md-active.sync="popup"
-      md-content="Done, refresh the page to find your favourites."
-      md-confirm-text="Cool!" />
     <md-content class="md-scrollbar">
       <div class="not-found" v-if="err">
         <md-empty-state>
@@ -38,9 +34,14 @@
         <md-card-expand>
           <md-card-actions md-alignment="space-between">
             <div>
-                <md-button v-on:click="addToFav(pokemon.id)" @click="popup = true" class="md-icon-button">
-                    <md-icon>favorite<md-tooltip md-direction="bottom">Add to favorite</md-tooltip></md-icon>
-                </md-button>
+              <md-button v-on:click="toggleFavourite(pokemon.id)" class="md-icon-button">
+                  <md-icon v-if="favourites.includes(pokemon.id)">
+                    favorite<md-tooltip md-direction="bottom">Remove from favourites</md-tooltip>
+                  </md-icon>
+                  <md-icon v-else>
+                    favorite_border<md-tooltip md-direction="bottom">Add to favorites</md-tooltip>
+                  </md-icon>
+              </md-button>
             </div>
 
             <md-card-expand-trigger>
@@ -103,13 +104,11 @@
 <script>
 export default {
   name: 'FindPoke',
-  props: ['settings'],
+  props: ['settings', 'favourites'],
   data () {
     return {
       pokemon: null,
       err: null,
-      favPokemon: [],
-      popup: false,
       query: ''
     }
   },
@@ -129,14 +128,8 @@ export default {
         this.err = error.status
       })
     },
-    addToFav: function (pokeid) {
-      if (this.favPokemon.indexOf(pokeid) < 0) {
-        this.favPokemon.push(pokeid)
-      } else {
-        this.favPokemon.pop(this.favPokemon.indexOf(pokeid))
-      }
-      localStorage.setItem('favPokemon', JSON.stringify(this.favPokemon))
-      this.favPokemon = JSON.parse(localStorage.getItem('favPokemon'))
+    toggleFavourite: function (pokeid) {
+      this.$emit('favourite', pokeid)
     },
     searchPokemon: function () {
       document.getElementById('search-btn').classList.add('md-dense')

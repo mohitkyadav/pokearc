@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <md-tabs md-alignment="fixed">
-     <md-tab id="tab-home" md-icon="home" md-label="Pokemons"><PokeArc :settings="settings"/></md-tab>
-     <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke :settings="settings"/></md-tab>
-     <md-tab id="tab-fav" md-icon="favorite" md-label="Favorites"><Favorite :settings="settings"/></md-tab>
+     <md-tab id="tab-home" md-icon="home" md-label="Pokemons"><PokeArc :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
+     <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
+     <md-tab id="tab-fav" md-icon="favorite" md-label="Favorites"><Favorite :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
      <md-tab id="tab-about" md-icon="pages" md-label="About"><About :settings="settings"/></md-tab>
      <md-tab id="tab-settings" md-icon="settings" md-label="Settings"><Settings :settings="settings" v-on:updateSettings="onUpdateSettings"/></md-tab>
     </md-tabs>
@@ -31,7 +31,8 @@ export default {
       githubProfile: 'https://github.com/mohitkyadav',
       settings: {
         showShiny: false
-      }
+      },
+      favourites: []
     }
   },
   created () {
@@ -39,11 +40,25 @@ export default {
       let settings = JSON.parse(localStorage.getItem('settings'))
       this.settings = settings
     }
+    if (localStorage.getItem('favourites')) {
+      let favourites = JSON.parse(localStorage.getItem('favourites'))
+      this.favourites = favourites
+    }
   },
   methods: {
     onUpdateSettings: function (settings) {
       this.settings = Object.assign({}, settings)
       localStorage.setItem('settings', JSON.stringify(settings))
+    },
+    onFavourite: function (pokeid) {
+      console.log('favourite', pokeid)
+      let index = this.favourites.indexOf(pokeid)
+      if (index > -1) {
+        this.favourites.splice(index, 1)
+      } else {
+        this.favourites.push(pokeid)
+      }
+      localStorage.setItem('favourites', JSON.stringify(this.favourites))
     },
     openUrl: function (url) {
       var win = window.open(url, '_blank')
