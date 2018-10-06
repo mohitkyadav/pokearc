@@ -76,7 +76,12 @@ export default {
       this.$http.get(url)
       .then(function (data) {
         var i = 0
-        while (i < this.limit) {
+        if (data.body.results.length > this.limit) {
+          // assume this is due to broken pagination
+          i = this.offset
+          limit = this.offset + limit
+        }
+        while (i < limit) {
           this.getPokemon(data.body.results[i].url)
           i++
         }
