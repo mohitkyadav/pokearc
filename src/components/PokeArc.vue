@@ -3,7 +3,7 @@
     <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
       <ul>
-        <li v-for="pokemon in pokemons" :key="pokemon.id">
+        <li v-for="pokemon in orderedPokemons" :key="pokemon.id">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
@@ -67,6 +67,11 @@ export default {
       pokemons: [],
       limit: 5,
       offset: 0
+    }
+  },
+  computed: {
+    orderedPokemons: function () {
+      return this.pokemons.sort((a, b) => a.id - b.id);
     }
   },
   methods: {
