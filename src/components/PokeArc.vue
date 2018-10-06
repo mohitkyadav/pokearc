@@ -72,11 +72,15 @@ export default {
   methods: {
     getPokemons: function (limit, offset) {
       this.offset += offset
-      var url = 'https://pokeapi.co/api/v2/pokemon/?limit=' + limit + '&offset=' + this.offset
-      this.$http.get(url)
-      .then(function (data) {
-        var i = 0
-        while (i < this.limit) {
+      var url =
+        'https://pokeapi.co/api/v2/pokemon/?limit=' +
+        limit +
+        '&offset=' +
+        this.offset
+      this.$http.get(url).then(function (data) {
+        var i = this.getRandomInt(944)
+        var offsetLimit = i
+        while (i < (offsetLimit + this.limit)) {
           this.getPokemon(data.body.results[i].url)
           i++
         }
@@ -87,14 +91,16 @@ export default {
       this.getPokemons(5, 5)
     },
     getPokemon: function (url) {
-      this.$http.get(url)
-      .then(function (data) {
-        this.pokemons.push(data.body)
-      }).then(function () {
-        if (this.pokemons.length === this.limit + this.offset) {
-          this.hideProgressBar()
-        }
-      })
+      this.$http
+        .get(url)
+        .then(function (data) {
+          this.pokemons.push(data.body)
+        })
+        .then(function () {
+          if (this.pokemons.length === this.limit + this.offset) {
+            this.hideProgressBar()
+          }
+        })
     },
     hideProgressBar: function () {
       document.getElementById('progress-bar').style.visibility = 'hidden'
@@ -104,6 +110,9 @@ export default {
     },
     toggleFavourite: function (pokeid) {
       this.$emit('favourite', pokeid)
+    },
+    getRandomInt: function (max) {
+      return Math.floor(Math.random() * Math.floor(max))
     }
   },
   beforeMount () {
@@ -114,7 +123,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
   color: red;
 }
@@ -126,28 +136,33 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-.md-body-2, li, h1, h2, .md-title {
+.md-body-2,
+li,
+h1,
+h2,
+.md-title {
   text-shadow: 2px 2px 5px black;
 }
 .container {
   padding: 0.05%;
 }
 .card-expansion {
-    height: 480px;
+  height: 480px;
 }
 .md-card {
-    width: 300px;
-    margin: 6px;
-    display: inline-block;
-    vertical-align: top;
+  width: 300px;
+  margin: 6px;
+  display: inline-block;
+  vertical-align: top;
 }
-.md-title, .capitalize {
+.md-title,
+.capitalize {
   text-transform: capitalize;
 }
 .md-content {
-    max-width: 100%;
-    height: 650px;
-    max-height: 650px;
-    overflow: auto;
+  max-width: 100%;
+  height: 650px;
+  max-height: 650px;
+  overflow: auto;
 }
 </style>
