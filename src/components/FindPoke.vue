@@ -150,8 +150,8 @@ export default {
     clickStop: function () {
       document.getElementById('search-btn').classList.remove('md-dense')
     },
-    removeDashes: function(inputString) {
-      return inputString.replace('-', ' ');
+    removeDashes: function (inputString) {
+      return inputString.replace('-', ' ')
     }
   },
   mounted () {
