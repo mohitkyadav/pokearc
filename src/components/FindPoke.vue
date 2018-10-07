@@ -18,7 +18,7 @@
       </div>
       <div class="not-found" v-if="!pokemon && !err">
         <md-empty-state>
-          <h2 class="md-display-1">You haven't searched yet. Try searching for any id(numeric between 1 and 802 inclusive) or name of a pokemon, "charizard".</h2>
+          <h2 class="md-display-1">You haven't searched yet. Try searching for any ID (numeric between 1 and 802 inclusive) or name of a pokemon, "Charizard".</h2>
         </md-empty-state>
       </div>
       <md-card md-with-hover v-if="pokemon && !err" class="md-elevation-24">
@@ -75,16 +75,16 @@
             <span class="md-list-item-text">Moves</span>
 
             <md-list slot="md-expand">
-              <md-list-item v-for="move in pokemon.moves" :key="move.move.name" class="md-inset">{{ move.move.name }}</md-list-item>
+              <md-list-item v-for="move in pokemon.moves" :key="move.move.name" class="md-inset"><span class="capitalize">{{ removeDashes(move.move.name) }}</span></md-list-item>
             </md-list>
           </md-list-item>
 
           <md-list-item md-expand>
             <md-icon>videogame_asset</md-icon>
-            <span class="md-list-item-text">Game indices</span>
+            <span class="md-list-item-text">Game Indices</span>
 
             <md-list slot="md-expand">
-              <md-list-item v-for="index in pokemon.game_indices" :key="index.version.name" class="md-inset">{{ index.version.name }}</md-list-item>
+              <md-list-item v-for="index in pokemon.game_indices" :key="index.version.name" class="md-inset"> #{{index.game_index}} in  <span class="capitalize">{{ removeDashes(index.version.name) }}</span> </md-list-item>
             </md-list>
           </md-list-item>
 
@@ -149,6 +149,9 @@ export default {
     },
     clickStop: function () {
       document.getElementById('search-btn').classList.remove('md-dense')
+    },
+    removeDashes: function (inputString) {
+      return inputString.replace('-', ' ')
     }
   },
   mounted () {
