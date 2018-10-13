@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="[ settings.toggleTheme === 'light' ? 'light-theme' : 'dark-theme']">
+  <div id="app" v-bind:class="[ settings.toggleTheme ? 'light-theme' : 'dark-theme']">
     <md-tabs md-alignment="fixed">
      <md-tab id="tab-home" md-icon="home" md-label="Pokemons"><PokeArc :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
      <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
@@ -91,6 +91,7 @@ export default {
   flex-direction: column;
 }
 .separator{
+    height:25%;
     padding-top: 10px;
     border-top: 1px solid #424242;
 }
