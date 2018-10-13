@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="[ settings.toggleTheme === 'light' ? 'light-theme' : 'dark-theme']">
     <md-tabs md-alignment="fixed">
      <md-tab id="tab-home" md-icon="home" md-label="Pokemons"><PokeArc :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
      <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
@@ -7,7 +7,7 @@
      <md-tab id="tab-about" md-icon="pages" md-label="About"><About :settings="settings"/></md-tab>
      <md-tab id="tab-settings" md-icon="settings" md-label="Settings"><Settings :settings="settings" v-on:updateSettings="onUpdateSettings"/></md-tab>
     </md-tabs>
-    <div class="separator">
+    <div class="separator md-content md-theme-default">
       <md-button v-on:click="openUrl(githubProfile)" class="md-icon-button md-raised">
         <md-avatar class="md-large">
           <img v-bind:src="avtarUrl" alt="Me">
@@ -30,7 +30,8 @@ export default {
       avtarUrl: 'static/avtar.jpg',
       githubProfile: 'https://github.com/mohitkyadav',
       settings: {
-        showShiny: false
+        showShiny: false,
+        toggleTheme: false
       },
       favourites: []
     }
@@ -90,7 +91,8 @@ export default {
   flex-direction: column;
 }
 .separator{
-    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #424242;
 }
 .github-buttons {
   margin-top: 10px;
