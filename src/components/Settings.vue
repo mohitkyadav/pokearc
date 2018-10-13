@@ -4,6 +4,8 @@
       <h1>Settings</h1>
       <md-switch v-model="localSettings.showShiny">Show Shiny</md-switch>
       <br>
+      <md-switch v-model="localSettings.toggleTheme">Toggle {{localSettings.toggleTheme ? 'Light' : ' Dark'}}</md-switch>
+      <br>
       <md-button class="md-dense md-raised md-primary" v-on:click='save()'>Save settings</md-button>
     </md-content>
   </div>
