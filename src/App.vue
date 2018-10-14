@@ -64,16 +64,7 @@ export default {
     openUrl: function (url) {
       var win = window.open(url, '_blank')
       win.focus()
-    },
-    fixPadding: function (padding) {
-      document.getElementById('tab-home').style.padding = '0'
-      document.getElementById('tab-search').style.padding = '0'
-      document.getElementById('tab-fav').style.padding = '0'
-      document.getElementById('tab-about').style.padding = '0'
     }
-  },
-  mounted () {
-    this.fixPadding(0)
   }
 }
 </script>
