@@ -105,4 +105,9 @@ export default {
 body {
     font-family: 'Roboto';font-size: 16px;
 }
+
+#tab-home, #tab-search, #tab-fav, #tab-about {
+  padding:0;
+}
+
 </style>
