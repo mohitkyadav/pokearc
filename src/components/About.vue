@@ -54,7 +54,7 @@ export default {
   name: 'About',
   data () {
     return {
-      twitter: 'https://twitter.com/mukulkyadav',
+      twitter: 'https://twitter.com/mohitkyadav123',
       linkedIn: 'https://linkedin.com/in/mohitkyadav',
       github: 'https://github.com/mohitkyadav',
       githubSvg: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg',
