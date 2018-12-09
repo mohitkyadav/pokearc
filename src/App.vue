@@ -24,7 +24,6 @@
     </div>
     </footer>
   </div>
-
 </template>
 
 <script>
@@ -102,7 +101,10 @@ export default {
 }
 
 footer{
-  position: static;
+  position: sticky;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .github-buttons {
