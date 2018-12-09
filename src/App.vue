@@ -101,10 +101,10 @@ export default {
     border-top: 1px solid #424242;
 }
 
-
 footer{
   position: static;
 }
+
 .github-buttons {
   margin-top: 10px;
   margin-bottom: 10px;
