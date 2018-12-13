@@ -170,8 +170,8 @@ export default {
   .md-card {
       width: 300px;
       margin: 4px;
-      vertical-align: top;
-      float: left;
+      vertical-align: bottom;
+      float: right;
   }
   .md-title, .capitalize {
     text-transform: capitalize;
