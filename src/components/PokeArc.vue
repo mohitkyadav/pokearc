@@ -2,8 +2,8 @@
   <div class="contain">
     <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
-      <ul>
-        <li v-for="pokemon in pokemons" :key="pokemon.id" class="col-lg-2">
+      <ul class="layout">
+        <li v-for="pokemon in pokemons" :key="pokemon.id" class="card">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
@@ -53,9 +53,7 @@
           </md-card>
         </li>
       </ul>
-      <div class="container">
       <md-button class="md-dense md-raised md-primary" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
-      </div>
     </md-content>
   </div>
 </template>
@@ -152,7 +150,7 @@ h2,
   height: 480px;
 }
 .md-card {
-  width: 220px;
+  width: 300px;
   margin: 6px;
   display: inline-block;
   vertical-align: top;
@@ -169,5 +167,28 @@ template {
   height: 650px;
   max-height: 650px;
   overflow: auto;
+}
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.card {
+   margin: 0;
+}
+@media all and (min-width: 1920px) {
+  .card {
+    margin: 0 1.2%;
+  }
+}
+@media all and (min-width: 2000px) {
+  .card {
+    margin: 0 3%;
+  }
+}
+@media all and (min-width: 3000px) {
+  .card {
+    margin: 0 6%;
+  }
 }
 </style>
