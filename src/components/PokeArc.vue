@@ -150,8 +150,8 @@ h2,
   height: 480px;
 }
 .md-card {
-  width: 300px;
-  margin: 6px;
+  width: 230px;
+  margin: 5px;
   display: inline-block;
   vertical-align: top;
 }
@@ -176,9 +176,19 @@ template {
 .card {
    margin: 0;
 }
+
+@media all and (min-width: 1500px) {
+  .md-card {
+  width: 280px;
+  }
+}
+
 @media all and (min-width: 1920px) {
   .card {
     margin: 0 1.2%;
+  }
+  .md-card {
+  width: 300px;
   }
 }
 @media all and (min-width: 2000px) {
