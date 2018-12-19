@@ -134,7 +134,6 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 .md-body-2,
 li,
@@ -154,6 +153,7 @@ h2,
   margin: 5px;
   display: inline-block;
   vertical-align: top;
+  padding-bottom: 2%;
 }
 .md-title,
 .capitalize {
@@ -174,7 +174,7 @@ template {
   justify-content: space-evenly;
 }
 .md-button {
-  margin-bottom: 22%;
+  margin-bottom: 30%;
 }
 .card {
    margin: 0;
@@ -183,9 +183,6 @@ template {
   .md-card {
   width: 280px;
   }
-  .md-button {
-  margin-bottom: 15%;
-}
 }
 @media all and (min-width: 1920px) {
   .card {
@@ -194,14 +191,14 @@ template {
   .md-card {
   width: 300px;
   }
-.md-button {
-  margin-bottom: 12%;
-}
 }
 @media all and (min-width: 2000px) {
   .card {
     margin: 0 3%;
   }
+.md-button {
+  margin-bottom: 50%;
+}
 }
 @media all and (min-width: 3000px) {
   .card {

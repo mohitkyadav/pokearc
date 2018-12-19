@@ -99,7 +99,6 @@ export default {
     padding-top: 10px;
     border-top: 1px solid #424242;
 }
-
 footer{
   position: fixed;
   right: 0;
@@ -111,10 +110,13 @@ footer{
   right: 0;
   top: 0;
   left: 0;
-  bottom: 0;
+  height: 100vh;
 }
 
-
+ div.dark-theme div#content {
+  background-color: #424242;
+  background-color: var(--md-theme-default-background, #424242);
+}
 .github-buttons {
   margin-top: 10px;
   margin-bottom: 10px;
