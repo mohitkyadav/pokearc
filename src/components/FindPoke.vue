@@ -178,8 +178,8 @@ export default {
   }
   .md-content {
       max-width: 100%;
-      height: 588px;
-      max-height: 588px;
+      height: 100vh;
+      max-height: 100vh;
       overflow: auto;
   }
   .not-found {

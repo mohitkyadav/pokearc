@@ -164,8 +164,8 @@ template {
 }
 .md-content {
   max-width: 100%;
-  height: 650px;
-  max-height: 650px;
+  height: 100vh;
+  min-height: 100vh;
   overflow: auto;
 }
 .layout {
@@ -173,16 +173,20 @@ template {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+.md-button {
+  margin-bottom: 22%;
+}
 .card {
    margin: 0;
 }
-
 @media all and (min-width: 1500px) {
   .md-card {
   width: 280px;
   }
+  .md-button {
+  margin-bottom: 15%;
 }
-
+}
 @media all and (min-width: 1920px) {
   .card {
     margin: 0 1.2%;
@@ -190,6 +194,9 @@ template {
   .md-card {
   width: 300px;
   }
+.md-button {
+  margin-bottom: 12%;
+}
 }
 @media all and (min-width: 2000px) {
   .card {

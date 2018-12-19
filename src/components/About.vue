@@ -74,8 +74,8 @@ export default {
 <style scoped lang="css">
 .md-content {
   max-width: 100%;
-  height: 657px;
-  max-height: 657px;
+  height: 100vh;
+  max-height: 100vh;
   overflow: auto;
 }
 </style>
