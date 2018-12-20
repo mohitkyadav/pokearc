@@ -134,7 +134,6 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 .md-body-2,
 li,
@@ -154,6 +153,7 @@ h2,
   margin: 5px;
   display: inline-block;
   vertical-align: top;
+  padding-bottom: 2%;
 }
 .md-title,
 .capitalize {
@@ -164,8 +164,8 @@ template {
 }
 .md-content {
   max-width: 100%;
-  height: 650px;
-  max-height: 650px;
+  height: 100vh;
+  min-height: 100vh;
   overflow: auto;
 }
 .layout {
@@ -173,16 +173,17 @@ template {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+.md-button {
+  margin-bottom: 30%;
+}
 .card {
    margin: 0;
 }
-
 @media all and (min-width: 1500px) {
   .md-card {
   width: 280px;
   }
 }
-
 @media all and (min-width: 1920px) {
   .card {
     margin: 0 1.2%;
@@ -195,6 +196,9 @@ template {
   .card {
     margin: 0 3%;
   }
+.md-button {
+  margin-bottom: 50%;
+}
 }
 @media all and (min-width: 3000px) {
   .card {

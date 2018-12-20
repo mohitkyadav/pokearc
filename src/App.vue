@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-bind:class="[ settings.toggleTheme ? 'light-theme' : 'dark-theme']">
-  <header>
+  <div id="content">
     <md-tabs md-alignment="fixed">
      <md-tab id="tab-home" md-icon="home" md-label="Pokemons"><PokeArc :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
      <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
@@ -8,7 +8,7 @@
      <md-tab id="tab-about" md-icon="pages" md-label="About"><About :settings="settings"/></md-tab>
      <md-tab id="tab-settings" md-icon="settings" md-label="Settings"><Settings :settings="settings" v-on:updateSettings="onUpdateSettings"/></md-tab>
     </md-tabs>
-    </header>
+    </div>
     <footer>
     <div class="separator md-content md-theme-default">
       <md-button v-on:click="openUrl(githubProfile)" class="md-icon-button md-raised">
@@ -99,14 +99,24 @@ export default {
     padding-top: 10px;
     border-top: 1px solid #424242;
 }
-
 footer{
-  position: sticky;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
 }
+#content  {
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
 
+ div.dark-theme div#content {
+  background-color: #424242;
+  background-color: var(--md-theme-default-background, #424242);
+}
 .github-buttons {
   margin-top: 10px;
   margin-bottom: 10px;
