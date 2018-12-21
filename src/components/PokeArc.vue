@@ -174,7 +174,7 @@ template {
   justify-content: space-evenly;
 }
 .md-button {
-  margin-bottom: 30%;
+  margin-bottom: 60%;
 }
 .card {
    margin: 0;
@@ -183,6 +183,10 @@ template {
   .md-card {
   width: 280px;
   }
+
+.md-button {
+  margin-bottom: 50%;
+}
 }
 @media all and (min-width: 1920px) {
   .card {
@@ -196,9 +200,6 @@ template {
   .card {
     margin: 0 3%;
   }
-.md-button {
-  margin-bottom: 50%;
-}
 }
 @media all and (min-width: 3000px) {
   .card {
