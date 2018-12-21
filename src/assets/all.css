@@ -2775,3 +2775,31 @@
   color: var(--md-theme-default-text-primary-on-tooltip, rgba(0, 0, 0, 0.87));
   background-color: rgba(255, 255, 255, 0.9);
   background-color: var(--md-theme-default-tooltip-on-background, rgba(255, 255, 255, 0.9)); }
+
+
+.light-theme .md-list .md-icon,.light-theme .md-list .md-list-item-text, .light-theme .md-card .md-card-header .md-subhead, .light-theme .md-card span, .light-theme .md-card li {
+  color: rgba(0, 0, 0, 1);
+ text-shadow: none;
+ font-weight: bold;
+}
+.light-theme .md-card .md-card-header .md-title {
+  color: rgba(0, 0, 0, 1);
+ text-shadow: 1px 1px 1px #222222;
+ letter-spacing: 0.09em;
+}
+
+.light-theme .md-card .md-card-header .md-subhead {
+  color: rgba(0, 0, 0, 0.9);
+ font-weight: bold;
+ margin-top: 5%;
+ letter-spacing: 0.09em;
+}
+.light-theme .md-list .md-list-item .md-inset {
+  color: black;
+  font-weight: bold;
+ letter-spacing: 0.2em;
+ text-shadow: 0.4px 0.4px 0.4px #111;
+}
+.light-theme .md-list .md-list-item-text {
+  letter-spacing: 0.16em;
+}
