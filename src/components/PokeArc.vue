@@ -53,7 +53,7 @@
           </md-card>
         </li>
       </ul>
-      <md-button class="md-dense md-raised md-primary" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
+      <md-button class="md-dense md-raised md-primary loadB" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
     </md-content>
   </div>
 </template>
@@ -173,7 +173,7 @@ template {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.md-button {
+.loadB {
   margin-bottom: 60%;
 }
 .card {
@@ -184,7 +184,7 @@ template {
   width: 280px;
   }
 
-.md-button {
+.loadB {
   margin-bottom: 50%;
 }
 }
