@@ -149,6 +149,7 @@ template {
     height: 100vh;
     max-height: 100vh;
     overflow: auto;
+    margin-bottom: 100%;
 }
 .card {
    margin: 0;
@@ -175,6 +176,9 @@ template {
   .card {
     margin: 0 6%;
   }
+.md-content {
+  margin-bottom: 200%;
+}
 }
 </style>
 

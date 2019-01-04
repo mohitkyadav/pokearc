@@ -167,6 +167,7 @@ template {
   height: 100vh;
   min-height: 100vh;
   overflow: auto;
+  margin-bottom: 150%;
 }
 .layout {
   display: flex;
@@ -185,7 +186,7 @@ template {
   }
 
 .loadB {
-  margin-bottom: 50%;
+  margin-bottom: 20%;
 }
 }
 @media all and (min-width: 1920px) {
@@ -205,5 +206,8 @@ template {
   .card {
     margin: 0 6%;
   }
+.md-content {
+  margin-bottom: 200%;
+}
 }
 </style>
