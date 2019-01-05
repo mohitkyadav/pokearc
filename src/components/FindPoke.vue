@@ -183,6 +183,7 @@ export default {
       height: 100vh;
       max-height: 100vh;
       overflow: auto;
+      margin-bottom: 150%;
   }
   .not-found {
     position: absolute;
@@ -210,7 +211,7 @@ export default {
     vertical-align: top;
   }
 .full-control {
-  margin-bottom: 40%;
+  margin-bottom: 30%;
 }
 .list {
   border-right: 1px solid #777;
