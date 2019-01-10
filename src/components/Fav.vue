@@ -2,8 +2,8 @@
   <div class="container">
     <md-progress-bar id="fav-progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
-      <ul>
-        <li v-for="pokemon in pokemons" :key="pokemon.id">
+      <ul class="layout">
+        <li v-for="pokemon in pokemons" :key="pokemon.id" class="card">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
@@ -115,7 +115,6 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 .md-body-2, li, h1, h2, .md-title {
   text-shadow: 2px 2px 5px black;
@@ -127,18 +126,59 @@ li {
     height: 480px;
 }
 .md-card {
-    width: 300px;
-    margin: 6px;
-    display: inline-block;
-    vertical-align: top;
+  width: 230px;
+  margin: 5px;
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: 2%;
 }
 .md-title, .capitalize {
   text-transform: capitalize;
 }
+template {
+  min-height:100%;
+}
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 15%;
+}
 .md-content {
     max-width: 100%;
-    height: 650px;
-    max-height: 650px;
+    height: 100vh;
+    max-height: 100vh;
     overflow: auto;
+    margin-bottom: 100%;
+}
+.card {
+   margin: 0;
+}
+@media all and (min-width: 1500px) {
+  .md-card {
+  width: 280px;
+  }
+}
+@media all and (min-width: 1920px) {
+  .card {
+    margin: 0 1.2%;
+  }
+  .md-card {
+  width: 300px;
+  }
+}
+@media all and (min-width: 2000px) {
+  .card {
+    margin: 0 3%;
+  }
+}
+@media all and (min-width: 3000px) {
+  .card {
+    margin: 0 6%;
+  }
+.md-content {
+  margin-bottom: 200%;
+}
 }
 </style>
+

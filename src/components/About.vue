@@ -43,7 +43,7 @@
         <p><a href="#"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license" /></a></p>
 
         <blockquote>
-          <p>© Mohit Kumar Yadav</p>
+          <p class="name">© Mohit Kumar Yadav</p>
         </blockquote>
     </md-content>
   </div>
@@ -74,8 +74,12 @@ export default {
 <style scoped lang="css">
 .md-content {
   max-width: 100%;
-  height: 657px;
-  max-height: 657px;
+  height: 100vh;
+  max-height: 100vh;
   overflow: auto;
+  margin-bottom: 100%;
+}
+.name {
+  margin-bottom: 20%;
 }
 </style>

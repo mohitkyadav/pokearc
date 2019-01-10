@@ -75,7 +75,7 @@
             <span class="md-list-item-text">Moves</span>
 
             <md-list slot="md-expand">
-              <md-list-item v-for="move in pokemon.moves" :key="move.move.name" class="md-inset"><span class="capitalize">{{ removeDashes(move.move.name) }}</span></md-list-item>
+              <md-list-item v-for="move in pokemon.moves" :key="move.move.name" class="md-inset list"><span class="capitalize">{{ removeDashes(move.move.name) }}</span></md-list-item>
             </md-list>
           </md-list-item>
 
@@ -84,7 +84,7 @@
             <span class="md-list-item-text">Game Indices</span>
 
             <md-list slot="md-expand">
-              <md-list-item v-for="index in pokemon.game_indices" :key="index.version.name" class="md-inset"> #{{index.game_index}} in  <span class="capitalize">{{ removeDashes(index.version.name) }}</span> </md-list-item>
+              <md-list-item v-for="index in pokemon.game_indices" :key="index.version.name" class="md-inset list"> #{{index.game_index}} in  <span class="capitalize">{{ removeDashes(index.version.name) }}</span> </md-list-item>
             </md-list>
           </md-list-item>
 
@@ -92,7 +92,7 @@
             <span class="md-list-item-text">Type</span>
 
             <md-list slot="md-expand">
-              <md-list-item v-for="type in pokemon.types" :key="type.type.name" class="md-inset">{{ type.type.name }}</md-list-item>
+              <md-list-item v-for="type in pokemon.types" :key="type.type.name" class="md-inset list">{{ type.type.name }}</md-list-item>
             </md-list>
           </md-list-item>
         </md-list>
@@ -170,17 +170,20 @@ export default {
   .md-card {
       width: 300px;
       margin: 4px;
-      vertical-align: top;
-      float: left;
+      vertical-align: bottom;
+      float: right;
+      position:sticky;
+      top: 0;
   }
   .md-title, .capitalize {
     text-transform: capitalize;
   }
   .md-content {
       max-width: 100%;
-      height: 588px;
-      max-height: 588px;
+      height: 100vh;
+      max-height: 100vh;
       overflow: auto;
+      margin-bottom: 150%;
   }
   .not-found {
     position: absolute;
@@ -201,10 +204,16 @@ export default {
   .full-control > .md-list {
     width: 60%;
     max-width: 100%;
-    height: 600px;
+    height: auto;
     display: inline-block;
     overflow: auto;
-    border: 1px solid rgba(#000, .12);
+    border-bottom: 1px solid #777;
     vertical-align: top;
   }
+.full-control {
+  margin-bottom: 30%;
+}
+.list {
+  border-right: 1px solid #777;
+}
 </style>

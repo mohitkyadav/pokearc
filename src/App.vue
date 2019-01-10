@@ -1,5 +1,6 @@
 <template>
   <div id="app" v-bind:class="[ settings.toggleTheme ? 'light-theme' : 'dark-theme']">
+  <div id="content">
     <md-tabs md-alignment="fixed">
      <md-tab id="tab-home" md-icon="home" md-label="Pokemons"><PokeArc :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
      <md-tab id="tab-search" md-icon="search" md-label="Find Pokemon"><FindPoke :settings="settings" v-on:favourite="onFavourite" :favourites="favourites"/></md-tab>
@@ -7,6 +8,8 @@
      <md-tab id="tab-about" md-icon="pages" md-label="About"><About :settings="settings"/></md-tab>
      <md-tab id="tab-settings" md-icon="settings" md-label="Settings"><Settings :settings="settings" v-on:updateSettings="onUpdateSettings"/></md-tab>
     </md-tabs>
+    </div>
+    <footer>
     <div class="separator md-content md-theme-default">
       <md-button v-on:click="openUrl(githubProfile)" class="md-icon-button md-raised">
         <md-avatar class="md-large">
@@ -19,6 +22,7 @@
         <a class="github-button" href="https://github.com/mohitkyadav/pokearc/issues" data-icon="octicon-issue-opened" data-size="large" data-show-count="true" aria-label="PokeArc on GitHub">Issue</a>
       </div>
     </div>
+    </footer>
   </div>
 </template>
 
@@ -86,7 +90,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0 0 0 0;
-  height: 100vh;
+  height: 100vhxed;
   display: flex;
   flex-direction: column;
 }
@@ -94,6 +98,24 @@ export default {
     height:25%;
     padding-top: 10px;
     border-top: 1px solid #424242;
+}
+footer{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#content  {
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+ div.dark-theme div#content {
+  background-color: #424242;
+  background-color: var(--md-theme-default-background, #424242);
 }
 .github-buttons {
   margin-top: 10px;

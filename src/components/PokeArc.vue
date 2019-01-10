@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="contain">
     <md-progress-bar id="progress-bar" md-mode="indeterminate"></md-progress-bar>
     <md-content class="md-scrollbar">
-      <ul>
-        <li v-for="pokemon in pokemons" :key="pokemon.id">
+      <ul class="layout">
+        <li v-for="pokemon in pokemons" :key="pokemon.id" class="card">
           <md-card md-with-hover class="md-elevation-20">
             <md-card-media>
               <img style="height:180px;width:180px;" v-bind:src="(settings.showShiny) ? pokemon.sprites.front_shiny : pokemon.sprites.front_default" alt="People">
@@ -53,7 +53,7 @@
           </md-card>
         </li>
       </ul>
-      <md-button class="md-dense md-raised md-primary" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
+      <md-button class="md-dense md-raised md-primary loadB" v-on:click='getMorePokemons()'>Load more Pokemons</md-button>
     </md-content>
   </div>
 </template>
@@ -134,7 +134,6 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 .md-body-2,
 li,
@@ -143,26 +142,72 @@ h2,
 .md-title {
   text-shadow: 2px 2px 5px black;
 }
-.container {
+.contain {
   padding: 0.05%;
 }
 .card-expansion {
   height: 480px;
 }
 .md-card {
-  width: 300px;
-  margin: 6px;
+  width: 230px;
+  margin: 5px;
   display: inline-block;
   vertical-align: top;
+  padding-bottom: 2%;
 }
 .md-title,
 .capitalize {
   text-transform: capitalize;
 }
+template {
+  min-height:100%;
+}
 .md-content {
   max-width: 100%;
-  height: 650px;
-  max-height: 650px;
+  height: 100vh;
+  min-height: 100vh;
   overflow: auto;
+  margin-bottom: 150%;
+}
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.loadB {
+  margin-bottom: 60%;
+}
+.card {
+   margin: 0;
+}
+@media all and (min-width: 1500px) {
+  .md-card {
+  width: 280px;
+  }
+
+.loadB {
+  margin-bottom: 20%;
+}
+}
+@media all and (min-width: 1920px) {
+  .card {
+    margin: 0 1.2%;
+  }
+  .md-card {
+  width: 300px;
+  }
+}
+@media all and (min-width: 2000px) {
+  .card {
+    margin: 0 3%;
+  }
+}
+@media all and (min-width: 3000px) {
+  .card {
+    margin: 0 6%;
+  }
+.md-content {
+  margin-bottom: 200%;
+}
 }
 </style>
