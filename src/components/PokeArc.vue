@@ -78,9 +78,10 @@ export default {
         '&offset=' +
         this.offset
       this.$http.get(url).then(function (data) {
-        var i = this.getRandomInt(944)
+        var i = 0
         var offsetLimit = i
         while (i < (offsetLimit + this.limit)) {
+          console.log(' i = ' + i)
           this.getPokemon(data.body.results[i].url)
           i++
         }
