@@ -37,13 +37,30 @@
               <md-card-expand-content>
                 <md-card-content>
                   <span class="md-body-2">
-                    Weight: {{ pokemon.weight }}
+                    <li class="capitalize full-w align-l">
+                      Weight :
+                      <span class="align-r">
+                        {{ pokemon.weight }}
+                      </span>
+                    </li>
                     <br/>
-                    Base experience: {{ pokemon.base_experience }}
+
+                    <li class="capitalize full-w align-l">
+                      Base experience :
+                      <span class="align-r">
+                        {{ pokemon.base_experience }}
+                      </span>
+                    </li>
+
                     <br/>
-                    <ul  v-for="stat in pokemon.stats">
-                      <li class="capitalize">
-                        {{ stat.stat.name }} : {{ stat.base_stat }}
+                    <ul class="align-l" v-for="stat in pokemon.stats" :key="stat.id">
+                      <li class="capitalize full-w">
+                        <span>
+                          {{ stat.stat.name }} :
+                        </span>
+                        <span class="align-r">
+                          {{ stat.base_stat }}
+                        </span>
                       </li>
                     </ul>
                   </span>
@@ -162,6 +179,15 @@ h2,
 }
 template {
   min-height:100%;
+}
+.align-l {
+  text-align: left !important;
+}
+.align-r {
+  float: right !important;
+}
+.full-w {
+  width: 100%;
 }
 .md-content {
   max-width: 100%;
