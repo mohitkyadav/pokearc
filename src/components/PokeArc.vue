@@ -43,7 +43,6 @@
                         {{ pokemon.weight }}
                       </span>
                     </li>
-
                     <br/>
 
                     <li class="capitalize full-w align-l">
